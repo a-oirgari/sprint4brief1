@@ -1,0 +1,61 @@
+<?php
+require __DIR__ . '/vendor/autoload.php';
+use App\Repositories\PatientRepository;
+use App\Repositories\DoctorRepository;
+use App\Repositories\DepartmentRepository;
+
+$repo = new PatientRepository();
+$doctorRepo = new DoctorRepository();
+$departmentRepo = new DepartmentRepository();
+
+// require_once 'core/ConsoleTable.php';
+// require_once 'stats/Statistics.php';
+
+
+
+while (true) {
+    echo PHP_EOL;
+    echo "=== Unity Care CLI ===" . PHP_EOL;
+    echo "1. Lister les patients" . PHP_EOL;
+    echo "2. Ajouter un patient" . PHP_EOL;
+    echo "3. Supprimer un patient" . PHP_EOL;
+    echo "4. Statistiques" . PHP_EOL;
+    echo "5. Quitter" . PHP_EOL;
+
+    $choice = readline("Choix: ");
+
+    if ($choice == 1) {
+        $patients = $repo->findAll();
+        ConsoleTable::render(
+            ['ID', 'Nom', 'Email'],
+            array_map(fn($p) => [$p['patient_id'], $p['first_name'].' '.$p['last_name'], $p['email']], $patients)
+        );
+    }
+
+    if ($choice == 2) {
+        $data = [];
+        $data[] = readline("Prénom: ");
+        $data[] = readline("Nom: ");
+        $data[] = readline("Genre: ");
+        $data[] = readline("Date de naissance: ");
+        $data[] = readline("Téléphone: ");
+        $data[] = readline("Email: ");
+        $data[] = readline("Adresse: ");
+        $repo->create($data);
+        echo "Patient ajouté " . PHP_EOL;
+    }
+
+    if ($choice == 3) {
+        $id = (int)readline("ID du patient: ");
+        $repo->delete($id);
+        echo "Patient supprimé" . PHP_EOL;
+    }
+
+    if ($choice == 4) {
+        echo "Âge moyen: " . Statistics::averagePatientAge() . PHP_EOL;
+    }
+
+    if ($choice == 5) {
+        exit("Au revoir ");
+    }
+}
