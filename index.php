@@ -48,13 +48,13 @@ function patientMenu(PatientRepository $repo): void
                     readline("Email: "),
                     readline("Adresse: ")
                 ]);
-                echo "✔ Patient ajouté" . PHP_EOL;
+                echo "Patient ajouté" . PHP_EOL;
                 break;
 
             case 3:
                 $id = (int)readline("ID du patient: ");
                 $repo->delete($id);
-                echo "✔ Patient supprimé" . PHP_EOL;
+                echo "Patient supprimé" . PHP_EOL;
                 break;
 
             case 4:
@@ -103,7 +103,7 @@ function doctorMenu(DoctorRepository $repo): void
             case 3:
                 $id = (int)readline("ID du médecin: ");
                 $repo->delete($id);
-                echo "✔ Médecin supprimé" . PHP_EOL;
+                echo "Médecin supprimé" . PHP_EOL;
                 break;
 
             case 4:
@@ -147,7 +147,7 @@ function departmentMenu(DepartmentRepository $repo): void
             case 3:
                 $id = (int)readline("ID du département: ");
                 $repo->delete($id);
-                echo "✔ Département supprimé" . PHP_EOL;
+                echo "Département supprimé" . PHP_EOL;
                 break;
 
             case 4:
