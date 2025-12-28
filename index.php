@@ -12,11 +12,7 @@ $patientRepo = new PatientRepository();
 $doctorRepo = new DoctorRepository();
 $departmentRepo = new DepartmentRepository();
 
-/*
-|--------------------------------------------------------------------------
-| MENUS
-|--------------------------------------------------------------------------
-*/
+
 
 function patientMenu(PatientRepository $repo): void
 {
@@ -160,11 +156,7 @@ function departmentMenu(DepartmentRepository $repo): void
     }
 }
 
-/*
-|--------------------------------------------------------------------------
-| MENU PRINCIPAL
-|--------------------------------------------------------------------------
-*/
+
 
 while (true) {
     echo PHP_EOL . "=== Unity Care CLI ===" . PHP_EOL;
